@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		A6E0F9EB200F879A004D9F4C /* RNAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E0F9EA200F879A004D9F4C /* RNAudioSession.m */; };
 /* End PBXBuildFile section */
