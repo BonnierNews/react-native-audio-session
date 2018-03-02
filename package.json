@@ -1,0 +1,29 @@
+{
+  "name": "react-native-audio-session",
+  "version": "0.0.1",
+  "description": "React Native module for handling the AVAudioSession instance on iOS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BonnierNews/react-native-audio-session.git"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "native",
+    "iOS",
+    "audio",
+    "AVFoundation",
+    "AVAudioSession",
+    "bridge"
+  ],
+  "author": "Johan Kasperi <johan@kasperi.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BonnierNews/react-native-audio-session/issues"
+  },
+  "homepage": "https://github.com/BonnierNews/react-native-audio-session#readme"
+}
