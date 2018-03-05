@@ -58,6 +58,7 @@ AudioSession.currentMode().then(mode => {
 
 ### Modules
 #### AudioSession
+The main native module.
 
 | Method Name | Params | Returns | Notes |
 |---|---|---|
