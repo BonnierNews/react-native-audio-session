@@ -70,7 +70,7 @@ RCT_EXPORT_METHOD(setCategory:(NSString *)category options:(NSString *)options r
         if (_options[options] != nil) {
             [[AVAudioSession sharedInstance] setCategory:cat withOptions:_options[options] error:&error];
         } else {
-            [[AVAudioSession sharedInstance] setCategory:category error:&error];
+            [[AVAudioSession sharedInstance] setCategory:cat error:&error];
         }
         if (error) {
             reject(@"setCategory", @"Could not set category.", error);
