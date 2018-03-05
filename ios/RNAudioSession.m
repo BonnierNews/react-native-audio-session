@@ -66,12 +66,17 @@ RCT_EXPORT_METHOD(setCategory:(NSString *)category options:(NSString *)options r
 {
     NSString* cat = _categories[category];
     if (cat != nil && [[AVAudioSession sharedInstance].availableCategories containsObject:cat]) {
+        NSError *error = nil;
         if (_options[options] != nil) {
-            [[AVAudioSession sharedInstance] setCategory:cat withOptions:_options[options] error:nil];
+            [[AVAudioSession sharedInstance] setCategory:cat withOptions:_options[options] error:&error];
         } else {
-            [[AVAudioSession sharedInstance] setCategory:category error:nil];
+            [[AVAudioSession sharedInstance] setCategory:category error:&error];
         }
-        resolve(@[]);
+        if (error) {
+            reject(@"setCategory", @"Could not set category.", error);
+        } else {
+            resolve(@[]);
+        }
     } else {
         NSDictionary *userInfo = @{
             NSLocalizedDescriptionKey: @"Could not set AVAudioSession category.",
@@ -87,8 +92,13 @@ RCT_EXPORT_METHOD(setMode:(NSString *)mode resolver:(RCTPromiseResolveBlock)reso
 {
     NSString* mod = _modes[mode];
     if (mod != nil && [[AVAudioSession sharedInstance].availableModes containsObject:mod]) {
-        [[AVAudioSession sharedInstance] setMode:mod error:nil];
-        resolve(@[]);
+        NSError *error = nil;
+        [[AVAudioSession sharedInstance] setMode:mod error:&error];
+        if (error) {
+            reject(@"setMode", @"Could not set mode.", error);
+        } else {
+            resolve(@[]);
+        }
     } else {
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: @"Could not set AVAudioSession mode.",
@@ -105,8 +115,13 @@ RCT_EXPORT_METHOD(setCategoryAndMode:(NSString *)category mode:(NSString *)mode 
     NSString* cat = _categories[category];
     NSString* mod = _modes[mode];
     if (cat != nil && mod != nil && _options[options] != nil && [[AVAudioSession sharedInstance].availableCategories containsObject:cat] && [[AVAudioSession sharedInstance].availableModes containsObject:mod]) {
-        [[AVAudioSession sharedInstance] setCategory:cat mode:mod options:_options[options] error:nil];
-        resolve(@[]);
+        NSError *error = nil;
+        [[AVAudioSession sharedInstance] setCategory:cat mode:mod options:_options[options] error:&error];
+        if (error) {
+            reject(@"setCategoryAndMode", @"Could not set category and mode.", error);
+        } else {
+            resolve(@[]);
+        }
     } else {
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: @"Could not set AVAudioSession category and mode.",
@@ -114,7 +129,7 @@ RCT_EXPORT_METHOD(setCategoryAndMode:(NSString *)category mode:(NSString *)mode 
                                    NSLocalizedRecoverySuggestionErrorKey: @"Try another category or mode."
                                    };
         NSError *error = [NSError errorWithDomain:@"RNAudioSession" code:-1 userInfo:userInfo];
-        reject(@"setCategory", @"Could not set category and mode.", error);
+        reject(@"setCategoryAndMode", @"Could not set category and mode.", error);
     }
 }
 
