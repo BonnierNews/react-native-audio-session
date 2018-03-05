@@ -44,6 +44,16 @@ const create = () => {
     }
   }
 
+  const currentCategoryOptions = () => {
+    if (IS_IOS) {
+      return new Promise((resolve, reject) => {
+        RNAudioSession.categoryOptions(event => {
+          resolve(event)
+        })
+      })
+    }
+  }
+
   const currentMode = () => {
     if (IS_IOS) {
       return new Promise((resolve, reject) => {
@@ -73,6 +83,7 @@ const create = () => {
 
   return {
     currentCategory,
+    currentCategoryOptions,
     currentMode,
     setCategory,
     setMode,
