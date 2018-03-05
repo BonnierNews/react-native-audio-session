@@ -58,6 +58,7 @@ AudioSession.currentMode().then(mode => {
 
 ### Modules
 #### AudioSession
+
 | Method Name | Params | Returns | Notes |
 |---|---|---|
 |setCategory|`AudioCategories`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category.|
