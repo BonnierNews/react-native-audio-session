@@ -2,7 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/react-native-audio-session.svg?style=flat)](https://www.npmjs.com/package/react-native-audio-session)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-audio-session.svg?style=flat)](https://www.npmjs.com/package/react-native-audio-session)
 
-A React Native module for handling category, category options and mode on the `AVAudioSession` sharedInstance on iOS.
+A React Native module for handling category, category options and mode on the [`AVAudioSession`](https://developer.apple.com/documentation/avfoundation/avaudiosession?language=objc) sharedInstance on iOS.
 
 ## Getting started
 
@@ -16,6 +16,11 @@ and then
 
 ```javascript
 import AudioSession, {AudioCategories, AudioOptions, AudioModes} from 'react-native-audio-session'
+
+// Set AVAudioSession active
+AudioSession.setActive(true)
+.then(() => { console.log('Success!') })
+.catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category
 AudioSession.setCategory(AudioCategories.Playback)
@@ -60,12 +65,13 @@ AudioSession.currentMode().then(mode => {
 #### AudioSession
 | Method Name | Params | Returns | Notes |
 |---|---|---|---|
-|setCategory|`AudioCategories`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category.|
-|setMode|`AudioModes`|`Promise`|Set the current AVAudioSession mode.|
-|setCategoryAndMode|`AudioCategories`, `AudioModes`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category and mode.|
-|currentCategory|-|`Promise`|Get the current AVAudioSession category.|
-|currentOptions|-|`Promise`|Get the current AVAudioSession options.|
-|currentMode|-|`Promise`|Get the current AVAudioSession mode.|
+|setActive|`Bool`|`Promise`|Set the current AVAudioSession as active [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616627-setactive?language=objc).|
+|setCategory|`AudioCategories`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616442-setcategory?language=objc).|
+|setMode|`AudioModes`|`Promise`|Set the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616614-setmode?language=objc).|
+|setCategoryAndMode|`AudioCategories`, `AudioModes`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category and mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1771734-setcategory?language=objc).|
+|currentCategory|-|`Promise`|Get the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616615-category?language=objc).|
+|currentOptions|-|`Promise`|Get the current AVAudioSession options [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616503-categoryoptions?language=objc).|
+|currentMode|-|`Promise`|Get the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616508-mode?language=objc).|
 
 ### Objects
 #### AudioCategories

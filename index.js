@@ -34,12 +34,12 @@ export const AudioModes = {
 }
 
 const create = () => {
+
   const noAndroid = () => {
     return new Promise((resolve, reject) => {
-      resolve('AudioSession is not supported on Android.')
+      resolve("AudioSession is not supported on Android.")
     })
   }
-
   const currentCategory = () => {
     if (IS_IOS) {
       return new Promise((resolve, reject) => {
@@ -57,7 +57,7 @@ const create = () => {
       return new Promise((resolve, reject) => {
         RNAudioSession.options(event => {
           const keys = Object.keys(AudioOptions)
-          const key = keys.length > event - 1 ? keys[event - 1] : null
+          const key = keys.length > event - 1 ? keys[event - 1]: null
           resolve(AudioOptions[key])
         })
       })
@@ -73,6 +73,14 @@ const create = () => {
           resolve(event)
         })
       })
+    } else {
+      return noAndroid()
+    }
+  }
+
+  const setActive = active => {
+    if (IS_IOS) {
+      return RNAudioSession.setActive(active)
     } else {
       return noAndroid()
     }
@@ -106,6 +114,7 @@ const create = () => {
     currentCategory,
     currentOptions,
     currentMode,
+    setActive,
     setCategory,
     setMode,
     setCategoryAndMode

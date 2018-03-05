@@ -62,6 +62,17 @@ RCT_EXPORT_METHOD(mode:(RCTResponseSenderBlock)callback)
     callback(@[[AVAudioSession sharedInstance].mode]);
 }
 
+RCT_EXPORT_METHOD(setActive:(BOOL)active resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setActive:active withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
+    if (error) {
+        reject(@"setActive", @"Could not set active.", error);
+    } else {
+        resolve(@[]);
+    }
+}
+
 RCT_EXPORT_METHOD(setCategory:(NSString *)category options:(NSString *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
     NSString* cat = _categories[category];
