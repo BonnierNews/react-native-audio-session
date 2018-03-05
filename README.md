@@ -58,10 +58,8 @@ AudioSession.currentMode().then(mode => {
 
 ### Modules
 #### AudioSession
-The main native module.
-
 | Method Name | Params | Returns | Notes |
-|---|---|---|
+|---|---|---|---|
 |setCategory|`AudioCategories`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category.|
 |setMode|`AudioModes`|`Promise`|Set the current AVAudioSession mode.|
 |setCategoryAndMode|`AudioCategories`, `AudioModes`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category and mode.|
