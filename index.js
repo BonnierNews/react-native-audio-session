@@ -44,11 +44,13 @@ const create = () => {
     }
   }
 
-  const currentCategoryOptions = () => {
+  const currentOptions = () => {
     if (IS_IOS) {
       return new Promise((resolve, reject) => {
-        RNAudioSession.categoryOptions(event => {
-          resolve(event)
+        RNAudioSession.options(event => {
+          const keys = Object.keys(AudioOptions)
+          const key = keys.length > event - 1 ? keys[event - 1]: null
+          resolve(AudioOptions[key])
         })
       })
     }
@@ -83,7 +85,7 @@ const create = () => {
 
   return {
     currentCategory,
-    currentCategoryOptions,
+    currentOptions,
     currentMode,
     setCategory,
     setMode,

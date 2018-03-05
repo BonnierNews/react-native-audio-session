@@ -52,9 +52,9 @@ RCT_EXPORT_METHOD(category:(RCTResponseSenderBlock)callback)
     callback(@[[AVAudioSession sharedInstance].category]);
 }
 
-RCT_EXPORT_METHOD(categoryOptions:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(options:(RCTResponseSenderBlock)callback)
 {
-    callback(@[[AVAudioSession sharedInstance].categoryOptions]);
+    callback(@[[NSNumber numberWithInteger:[AVAudioSession sharedInstance].categoryOptions]]);
 }
 
 RCT_EXPORT_METHOD(mode:(RCTResponseSenderBlock)callback)

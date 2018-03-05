@@ -19,19 +19,32 @@ import AudioSession, {AudioCategories, AudioOptions, AudioModes} from 'react-nat
 
 // Set AVAudioSession category
 AudioSession.setCategory(AudioCategories.Playback)
+.then(() => { console.log('Success!') })
+.catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category and options
 AudioSession.setCategory(AudioCategories.Playback, AudioOptions.MixWithOthers)
+.then(() => { console.log('Success!') })
+.catch(error => { console.log('Error!') })
 
 // Set AVAudioSession mode
 AudioSession.setMode(AudioModes.VoiceChat)
+.then(() => { console.log('Success!') })
+.catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category, mode and options
 AudioSession.setCategoryAndMode(AudioCategories.Playback, AudioModes.VoiceChat, AudioOptions.MixWithOthers)
+.then(() => { console.log('Success!') })
+.catch(error => { console.log('Error!') })
 
 // Get current AVAudioSession category
 AudioSession.currentCategory().then(category => {
   console.log(category)
+})
+
+// Get current AVAudioSession options
+AudioSession.currentOptions().then(options => {
+  console.log(options)
 })
 
 // Get current AVAudioSession mode
@@ -51,7 +64,7 @@ AudioSession.currentMode().then(mode => {
 |setMode|`AudioModes`|`Promise`|Set the current AVAudioSession mode.|
 |setCategoryAndMode|`AudioCategories`, `AudioModes`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category and mode.|
 |currentCategory|-|`Promise`|Get the current AVAudioSession category.|
-|currentCategoryOptions|-|`Promise`|Get the current AVAudioSession category options.|
+|currentOptions|-|`Promise`|Get the current AVAudioSession options.|
 |currentMode|-|`Promise`|Get the current AVAudioSession mode.|
 
 ### Objects
