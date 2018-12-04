@@ -79,7 +79,7 @@ RCT_EXPORT_METHOD(setCategory:(NSString *)category options:(NSString *)options r
     if (cat != nil && [[AVAudioSession sharedInstance].availableCategories containsObject:cat]) {
         NSError *error = nil;
         if (_options[options] != nil) {
-            [[AVAudioSession sharedInstance] setCategory:cat withOptions:_options[options] error:&error];
+            [[AVAudioSession sharedInstance] setCategory:cat withOptions:[_options[options] integerValue] error:&error];
         } else {
             [[AVAudioSession sharedInstance] setCategory:cat error:&error];
         }
@@ -127,7 +127,7 @@ RCT_EXPORT_METHOD(setCategoryAndMode:(NSString *)category mode:(NSString *)mode 
     NSString* mod = _modes[mode];
     if (cat != nil && mod != nil && _options[options] != nil && [[AVAudioSession sharedInstance].availableCategories containsObject:cat] && [[AVAudioSession sharedInstance].availableModes containsObject:mod]) {
         NSError *error = nil;
-        [[AVAudioSession sharedInstance] setCategory:cat mode:mod options:_options[options] error:&error];
+        [[AVAudioSession sharedInstance] setCategory:cat mode:mod options:[_options[options] integerValue] error:&error];
         if (error) {
             reject(@"setCategoryAndMode", @"Could not set category and mode.", error);
         } else {
