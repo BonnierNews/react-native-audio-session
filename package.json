@@ -1,6 +1,6 @@
 {
   "name": "react-native-audio-session",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React Native module for handling the AVAudioSession instance on iOS.",
   "main": "index.js",
   "scripts": {
