@@ -49,17 +49,38 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(category:(RCTResponseSenderBlock)callback)
 {
-    callback(@[[AVAudioSession sharedInstance].category]);
+    NSString *cat = [AVAudioSession sharedInstance].category;
+    NSArray *temp = [_categories allKeysForObject:cat];
+    NSString *key = [temp lastObject];
+    if (key) {
+        callback(@[key]);
+    } else {
+        callback(@[]);
+    }
 }
 
 RCT_EXPORT_METHOD(options:(RCTResponseSenderBlock)callback)
 {
-    callback(@[[NSNumber numberWithInteger:[AVAudioSession sharedInstance].categoryOptions]]);
+    NSUInteger options = [AVAudioSession sharedInstance].categoryOptions;
+    NSArray *temp = [_options allKeysForObject:@(options)];
+    NSString *key = [temp lastObject];
+    if (key) {
+        callback(@[key]);
+    } else {
+        callback(@[]);
+    }
 }
 
 RCT_EXPORT_METHOD(mode:(RCTResponseSenderBlock)callback)
 {
-    callback(@[[AVAudioSession sharedInstance].mode]);
+    NSString *mode = [AVAudioSession sharedInstance].mode;
+    NSArray *temp = [_modes allKeysForObject:mode];
+    NSString *key = [temp lastObject];
+    if (key) {
+        callback(@[key]);
+    } else {
+        callback(@[]);
+    }
 }
 
 RCT_EXPORT_METHOD(setActive:(BOOL)active resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
