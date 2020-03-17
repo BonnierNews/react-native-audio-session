@@ -5,7 +5,7 @@ const noAndroid = () =>
 
 const AudioSession = {
   currentCategory: noAndroid,
-  currentOptions: noAndroid,
+  currentCategoryOptions: noAndroid,
   currentMode: noAndroid,
   setActive: noAndroid,
   setCategory: noAndroid,

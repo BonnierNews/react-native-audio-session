@@ -10,7 +10,7 @@ export type AudioCategory =
   | 'PlayAndRecord'
   | 'MultiRoute'
 
-export type AudioOptions =
+export type AudioCategoryOptions =
   | 'MixWithOthers'
   | 'DuckOthers'
   | 'InterruptSpokenAudioAndMixWithOthers'
@@ -40,9 +40,9 @@ const currentCategory = () =>
     })
   })
 
-const currentOptions = () =>
-  new Promise<AudioOptions>((resolve, reject) => {
-    RNAudioSession.options((options?: AudioOptions) => {
+const currentCategoryOptions = () =>
+  new Promise<AudioCategoryOptions>((resolve, reject) => {
+    RNAudioSession.options((options?: AudioCategoryOptions) => {
       if (options) {
         resolve(options)
       } else {
@@ -67,7 +67,7 @@ const setActive = (active: boolean): Promise<void> =>
 
 const setCategory = (
   category: AudioCategory,
-  options?: AudioOptions
+  options?: AudioCategoryOptions
 ): Promise<void> => RNAudioSession.setCategory(category, options)
 
 const setMode = (mode: AudioMode): Promise<void> => RNAudioSession.setMode(mode)
@@ -75,12 +75,12 @@ const setMode = (mode: AudioMode): Promise<void> => RNAudioSession.setMode(mode)
 const setCategoryAndMode = (
   category: AudioCategory,
   mode: AudioMode,
-  options: AudioOptions
+  options?: AudioCategoryOptions
 ): Promise<void> => RNAudioSession.setCategoryAndMode(category, mode, options)
 
 const AudioSession = {
   currentCategory,
-  currentOptions,
+  currentCategoryOptions,
   currentMode,
   setActive,
   setCategory,
