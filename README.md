@@ -15,7 +15,7 @@ and then
 ## Usage
 
 ```javascript
-import AudioSession, {AudioCategories, AudioOptions, AudioModes} from 'react-native-audio-session'
+import AudioSession from 'react-native-audio-session'
 
 // Set AVAudioSession active
 AudioSession.setActive(true)
@@ -23,22 +23,22 @@ AudioSession.setActive(true)
 .catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category
-AudioSession.setCategory(AudioCategories.Playback)
+AudioSession.setCategory('Playback')
 .then(() => { console.log('Success!') })
 .catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category and options
-AudioSession.setCategory(AudioCategories.Playback, AudioOptions.MixWithOthers)
+AudioSession.setCategory('Playback', 'MixWithOthers')
 .then(() => { console.log('Success!') })
 .catch(error => { console.log('Error!') })
 
 // Set AVAudioSession mode
-AudioSession.setMode(AudioModes.VoiceChat)
+AudioSession.setMode('VoiceChat')
 .then(() => { console.log('Success!') })
 .catch(error => { console.log('Error!') })
 
 // Set AVAudioSession category, mode and options
-AudioSession.setCategoryAndMode(AudioCategories.Playback, AudioModes.VoiceChat, AudioOptions.MixWithOthers)
+AudioSession.setCategoryAndMode('Playback', 'VoiceChat', 'MixWithOthers')
 .then(() => { console.log('Success!') })
 .catch(error => { console.log('Error!') })
 
@@ -48,7 +48,7 @@ AudioSession.currentCategory().then(category => {
 })
 
 // Get current AVAudioSession options
-AudioSession.currentOptions().then(options => {
+AudioSession.currentCategoryOptions().then(options => {
   console.log(options)
 })
 
@@ -65,19 +65,19 @@ AudioSession.currentMode().then(mode => {
 #### AudioSession
 | Method Name | Params | Returns | Notes |
 |---|---|---|---|
-|setActive|`Bool`|`Promise`|Set the current AVAudioSession as active [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616627-setactive?language=objc).|
-|setCategory|`AudioCategories`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616442-setcategory?language=objc).|
-|setMode|`AudioModes`|`Promise`|Set the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616614-setmode?language=objc).|
-|setCategoryAndMode|`AudioCategories`, `AudioModes`, `AudioOptions` (nullable)|`Promise`|Set the current AVAudioSession category and mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1771734-setcategory?language=objc).|
-|currentCategory|-|`Promise`|Get the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616615-category?language=objc).|
-|currentOptions|-|`Promise`|Get the current AVAudioSession options [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616503-categoryoptions?language=objc).|
-|currentMode|-|`Promise`|Get the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616508-mode?language=objc).|
+|setActive|`Bool`|`Promise<void>`|Set the current AVAudioSession as active [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616627-setactive?language=objc).|
+|setCategory|`AudioCategory`, `AudioCategoryOptions` (nullable)|`Promise<void>`|Set the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616442-setcategory?language=objc).|
+|setMode|`AudioMode`|`Promise<void>`|Set the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616614-setmode?language=objc).|
+|setCategoryAndMode|`AudioCategory`, `AudioMode`, `AudioCategoryOptions` (nullable)|`Promise<void>`|Set the current AVAudioSession category and mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1771734-setcategory?language=objc).|
+|currentCategory|-|`Promise<AudioCategory>`|Get the current AVAudioSession category [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616615-category?language=objc).|
+|currentOptions|-|`Promise<AudioCategoryOptions>`|Get the current AVAudioSession options [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616503-categoryoptions?language=objc).|
+|currentMode|-|`Promise<AudioMode>`|Get the current AVAudioSession mode [(Reference)](https://developer.apple.com/documentation/avfoundation/avaudiosession/1616508-mode?language=objc).|
 
-### Objects
-#### AudioCategories
-The `AudioCategories` param to all methods. Corresponds to `AVAudioSessionCategory` in iOS. Read more: [Audio Session Categories (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_categories?language=objc)
+### Params
+#### AudioCategory
+The `AudioCategory` param to all methods. Corresponds to `AVAudioSessionCategory` in iOS. Read more: [Audio Session Category (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosessioncategory?language=objc)
 
-| Key | Value |
+| Param | AVAudioSessionCategory |
 |---|---|
 |`Ambient`|`AVAudioSessionCategoryAmbient`|
 |`SoloAmbient`|`AVAudioSessionCategorySoloAmbient`|
@@ -86,10 +86,10 @@ The `AudioCategories` param to all methods. Corresponds to `AVAudioSessionCatego
 |`PlayAndRecord`|`AVAudioSessionCategoryPlayAndRecord`|
 |`MultiRoute`|`AVAudioSessionCategoryMultiRoute`|
 
-#### AudioOptions
-The `AudioOptions` param to all methods. Corresponds to `AVAudioSessionCategoryOptions` in iOS. Read more: [AVAudioSessionCategoryOptions (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosessioncategoryoptions?language=objc)
+#### AudioCategoryOptions
+The `AudioCategoryOptions` param to all methods. Corresponds to `AVAudioSessionCategoryOptions` in iOS. Read more: [AVAudioSessionCategoryOptions (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosessioncategoryoptions?language=objc)
 
-| Key | Value |
+| Param | AVAudioSessionCategoryOptions |
 |---|---|
 |`MixWithOthers`|`AVAudioSessionCategoryOptionMixWithOthers`|
 |`DuckOthers`|`AVAudioSessionCategoryOptionDuckOthers`|
@@ -99,10 +99,10 @@ The `AudioOptions` param to all methods. Corresponds to `AVAudioSessionCategoryO
 |`AllowAirPlay`|`AVAudioSessionCategoryOptionAllowAirPlay`|
 |`DefaultToSpeaker`|`AVAudioSessionCategoryOptionDefaultToSpeaker`|
 
-#### AudioModes
-The `AudioModes` param to all methods. Corresponds to `AVAudioSessionModes` in iOS. Read more: [Audio Session Modes (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_modes?language=objc)
+#### AudioMode
+The `AudioMode` param to all methods. Corresponds to `AVAudioSessionModes` in iOS. Read more: [Audio Session Modes (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_modes?language=objc)
 
-| Key | Value |
+| Param | AVAudioSessionModes |
 |---|---|
 |`Default`|`AVAudioSessionModeDefault`|
 |`VoiceChat`|`AVAudioSessionModeVoiceChat`|
