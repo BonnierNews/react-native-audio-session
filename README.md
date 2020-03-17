@@ -100,9 +100,9 @@ The `AudioCategoryOptions` param to all methods. Corresponds to `AVAudioSessionC
 |`DefaultToSpeaker`|`AVAudioSessionCategoryOptionDefaultToSpeaker`|
 
 #### AudioMode
-The `AudioMode` param to all methods. Corresponds to `AVAudioSessionModes` in iOS. Read more: [Audio Session Modes (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosession/audio_session_modes?language=objc)
+The `AudioMode` param to all methods. Corresponds to `AVAudioSessionMode` in iOS. Read more: [Audio Session Mode (developer.apple.com)](https://developer.apple.com/documentation/avfoundation/avaudiosessionmode?language=objc)
 
-| Param | AVAudioSessionModes |
+| Param | AVAudioSessionMode |
 |---|---|
 |`Default`|`AVAudioSessionModeDefault`|
 |`VoiceChat`|`AVAudioSessionModeVoiceChat`|
