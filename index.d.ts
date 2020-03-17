@@ -1,9 +1,9 @@
 import AudioSession, {
-  AudioCategories,
-  AudioModes,
+  AudioCategory,
+  AudioMode,
   AudioOptions
 } from './index.ios'
 
-export { AudioCategories, AudioModes, AudioOptions }
+export { AudioCategory, AudioMode, AudioOptions }
 
 export default AudioSession
